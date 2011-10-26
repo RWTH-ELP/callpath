@@ -4,6 +4,8 @@
 // Define if the callpath library was built with MPI.
 #cmakedefine CALLPATH_HAVE_MPI
 
+#cmakedefine CALLPATH_HAVE_SYMTAB
+
 // Muster version information -- numerical and a version string.
 #define CALLPATH_MAJOR_VERSION @CALLPATH_MAJOR_VERSION@
 #define CALLPATH_MINOR_VERSION @CALLPATH_MINOR_VERSION@

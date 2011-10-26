@@ -8,17 +8,19 @@ set(CALLPATH_SOURCES
 	FrameId.cpp
 	ModuleId.cpp
 	FrameInfo.cpp
-	Translator.cpp)
+	Translator.cpp
+	../util/io_utils.cpp
+	../util/string_utils.cpp)
 
-if (CALLPATH_HAVE_SW)
-  list (APPEND CALLPATH_SOURCES CallpathRuntime.cpp)
-endif()
+add_library(callpath SHARED ${CALLPATH_SOURCES})
+target_link_libraries(callpath ${CALLPATH_STACKWALKER_LIBRARIES})
+###target_link_libraries(callpath ${MPI_C_LIBRARIES})
+SET (TEMP "")
+FOREACH (skip_flag ${MPI_CXX_SKIP_FLAGS})
+    SET (TEMP "${TEMP} ${skip_flag}")
+ENDFOREACH (skip_flag)
+SET_TARGET_PROPERTIES(callpath PROPERTIES COMPILE_FLAGS "${TEMP}")
 
-add_library(callpath ${CALLPATH_SOURCES})
-target_link_libraries(callpath ${STACKWALKER_LIBRARIES} adept_utils)
-#if (CALLPATH_HAVE_MPI)
-#  target_link_libraries(callpath ${MPI_LIBRARIES})
-#endif()
 install(TARGETS callpath DESTINATION lib EXPORT callpath-libs)
 
 set(CALLPATH_HEADERS
@@ -34,7 +36,5 @@ set(CALLPATH_HEADERS
 install(FILES ${CALLPATH_HEADERS} DESTINATION include)
 
 include_directories(
-  ${PROJECT_BINARY_DIR}
-  ${SW_CPPFLAGS}
-  ${adept_utils_INCLUDE_PATH}
-	${MPI_INCLUDE_PATH})
+  ${CMAKE_CURRENT_BINARY_DIR}
+       ${MPI_INCLUDE_PATH})
