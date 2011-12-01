@@ -13,7 +13,7 @@ set(CALLPATH_SOURCES
 	../util/string_utils.cpp)
 
 add_library(callpath SHARED ${CALLPATH_SOURCES})
-target_link_libraries(callpath ${CALLPATH_STACKWALKER_LIBRARIES} ${CALLPATH_STACKWALKER_EXTRA_LIBRARIES})
+target_link_libraries(callpath ${CALLPATH_STACKWALKER_EXTRA_LIBRARIES} ${CALLPATH_STACKWALKER_LIBRARIES})
 ###target_link_libraries(callpath ${MPI_C_LIBRARIES})
 SET (TEMP "")
 FOREACH (skip_flag ${MPI_CXX_SKIP_FLAGS})
