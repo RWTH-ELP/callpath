@@ -19,17 +19,7 @@ set(DWARF_HOME /usr/global/tools/dyninst/libdwarf/chaos_4_x86_64_ib/libdwarf-200
 set(DWARF_INCLUDE_PATH   ${DWARF_HOME}/include)
 include_directories(${DWARF_INCLUDE_PATH})
 
-#find_package(stackwalker)   #this does not exist yet so set variables manually
-set(STACKWALKER_HOME           /usr/global/tools/dyninst/stackwalker/chaos_4_x86_64_ib/stackwalker-2.0)
-#set(STACKWALKER_PLATFORM       x86_64-unknown-linux2.4)
-#set(STACKWALKER_HOME           /usr/global/tools/dyninst/stackwalker/bgp_cnk/stackwalker-2.0)
-#set(STACKWALKER_PLATFORM       ppc32_bgp_compute)
-set(STACKWALKER_INCLUDE_PATH   ${STACKWALKER_HOME}/include)
-set(STACKWALKER_LIBRARIES
-  ${STACKWALKER_HOME}/${STACKWALKER_PLATFORM}/lib/libstackwalk.so
-  ${STACKWALKER_HOME}/${STACKWALKER_PLATFORM}/lib/libsymtabAPI.so
-  iberty ${DWARF_HOME}/lib/libdwarf.so ${ELF_HOME}/lib64/libelf.so)
-add_definitions(-DCALLPATH_HAVE_SYMTAB)
+find_package(Stackwalker)
 
 include_directories(${STACKWALKER_INCLUDE_PATH})
 
