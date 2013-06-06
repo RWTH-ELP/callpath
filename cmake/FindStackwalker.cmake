@@ -69,8 +69,8 @@ set(CALLPATH_STACKWALKER_LIBRARY_DEPENDENCIES
     libparseAPI.so 
     libsymLite.so 
     libinstructionAPI.so 
-    libpcontrol.so 
-    libdynDwarf.so)
+    libdynDwarf.so
+    libpcontrol.so)
 
 FOREACH ( LIB ${CALLPATH_STACKWALKER_LIBRARY_DEPENDENCIES} )
     FIND_LIBRARY(${LIB}_LOC ${LIB} 
